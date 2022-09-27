@@ -1,11 +1,14 @@
 package com.example.tbc_course_26.domain.repository
 
-import com.example.tbc_course_26.data.local.data.User
+import com.example.tbc_course_26.domain.model.User
+import kotlinx.coroutines.flow.Flow
 
 
 interface UserRepository {
 
-    suspend fun getAllUsers(): List<User>
+    fun getAllUsers(): Flow<List<User>>
 
-    suspend fun addUser(user:User)
+    suspend fun addUser(user: User)
+
+    suspend fun deleteUser(user:User)
 }

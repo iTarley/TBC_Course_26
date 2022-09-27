@@ -6,14 +6,14 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.fragment.app.viewModels
-import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.lifecycleScope
-import androidx.lifecycle.repeatOnLifecycle
-import com.example.tbc_course_26.data.local.data.User
+import com.example.tbc_course_26.domain.model.User
 import com.example.tbc_course_26.databinding.FragmentMainBinding
 import com.example.tbc_course_26.ui.main.adapter.UsersRecycler
 import dagger.hilt.android.AndroidEntryPoint
+import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.launch
 
 @AndroidEntryPoint
@@ -53,24 +53,30 @@ class MainFragment : Fragment() {
         showUsers()
     }
 
-    private fun showUsers() {
-        viewLifecycleOwner.lifecycleScope.launch {
-            Log.d("123", "showUsers: 122223")
-            viewModel.getUser()
-            Log.d("123", "showUsers: 123")
-            viewModel.userFlow.collect{
-                Log.d("123", "321")
-                Log.d("123", "$it")
-                adapter.submitList(it)
-            }
+    private fun listeners() {
+
+        binding.saveBtn.setOnClickListener {
+            insertUser()
+        }
+
+        adapter.onClick = {
+            deleteUser(it)
         }
 
     }
 
-    private fun listeners() {
+    private fun deleteUser(user:User) {
+        viewLifecycleOwner.lifecycleScope.launch {
+            viewModel.deleteUser(user)
+        }
+    }
 
-        binding.saveBtn.setOnClickListener{
-            insertUser()
+
+    private fun showUsers() {
+        viewLifecycleOwner.lifecycleScope.launch {
+            viewModel.getUser().collect {
+                adapter.submitList(it)
+            }
         }
 
     }
@@ -78,7 +84,9 @@ class MainFragment : Fragment() {
     private fun insertUser() {
         viewLifecycleOwner.lifecycleScope.launch {
 
-            if(binding.lastNameEditText.text.toString().isNotEmpty() && binding.nameEditText.text.toString().isNotEmpty()){
+            if (binding.lastNameEditText.text.toString()
+                    .isNotEmpty() && binding.nameEditText.text.toString().isNotEmpty()
+            ) {
                 viewModel.addUser(
                     User(
                         uid = null,

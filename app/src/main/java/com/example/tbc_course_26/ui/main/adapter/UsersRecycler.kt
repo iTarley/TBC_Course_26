@@ -6,10 +6,16 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
-import com.example.tbc_course_26.data.local.data.User
+import com.example.tbc_course_26.domain.model.User
 import com.example.tbc_course_26.databinding.RecyclerItemBinding
 
+
+typealias onClick = (user: User) -> Unit
+
 class UsersRecycler : ListAdapter<User, UsersRecycler.ViewHolder>(DiffCallBack()) {
+
+
+    lateinit var onClick: onClick
 
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder =
@@ -41,8 +47,14 @@ class UsersRecycler : ListAdapter<User, UsersRecycler.ViewHolder>(DiffCallBack()
             binding.apply {
                 binding.name.text = currentUser.firstName
                 binding.last.text = currentUser.lastName
-
+                root.setOnClickListener {
+                    onClick(
+                        currentUser
+                    )
+                }
             }
+
+
 
         }
     }

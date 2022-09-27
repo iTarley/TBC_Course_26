@@ -2,9 +2,8 @@ package com.example.tbc_course_26.di
 
 import android.content.Context
 import androidx.room.Room
-import androidx.room.RoomDatabase
-import com.example.tbc_course_26.data.local.appdatabase.AppDatabase
-import com.example.tbc_course_26.data.local.dao.UserDao
+import com.example.tbc_course_26.data.local.data_source.AppDatabase
+import com.example.tbc_course_26.data.local.data_source.UserDao
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
