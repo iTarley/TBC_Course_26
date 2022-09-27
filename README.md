@@ -3,6 +3,8 @@
 
 ## Preview
 
+Application with basic add/remove with Room local Database
+
 <img src="https://user-images.githubusercontent.com/95241918/192144783-43b46dfb-dbd5-4dfe-bf23-e5196979deed.png" width="223" height="480"/>
 
 
