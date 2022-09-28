@@ -1,6 +1,6 @@
 package com.example.tbc_course_26.di
 
-import com.example.tbc_course_26.data.local.repository.UserRepositoryImpl
+import com.example.tbc_course_26.data.repository.UserRepositoryImpl
 import com.example.tbc_course_26.domain.repository.UserRepository
 import dagger.Binds
 import dagger.Module
