@@ -8,3 +8,8 @@ fun User.toEntity() = UserEntity(
     firstName = firstName,
     lastName = lastName
 )
+fun UserEntity.toModel() = User(
+    id = id,
+    firstName = firstName,
+    lastName = lastName
+)
