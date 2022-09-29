@@ -3,7 +3,7 @@
 
 ## Preview
 
-Application with basic add/remove with Room local Database
+Basic Add/Remove application with Room Local Database + clean architecture practices
 
 <img src="https://user-images.githubusercontent.com/95241918/192144783-43b46dfb-dbd5-4dfe-bf23-e5196979deed.png" width="223" height="480"/>
 
